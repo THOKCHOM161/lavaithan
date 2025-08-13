@@ -456,142 +456,66 @@
                 <p>Ownership of a plot (plot registry needed). Must be a Pakistani citizen and meet financial eligibility.</p>
             </div>
         </div>
-<div class="thumbnail-wrapper">
-  <input type="checkbox" id="fullscreen-toggle" class="fullscreen-toggle">
-  
-  <label for="fullscreen-toggle" class="thumbnail-container">
-    <img src="IMG-20250811-WA0001.jpg" alt="Developer" class="thumbnail-image">
-    <span class="thumbnail-badge">Tap to view</span>
-  </label>
-  
-  <label for="fullscreen-toggle" class="fullscreen-overlay">
-    <div class="fullscreen-content">
-      <img src="IMG-20250811-WA0001.jpg" alt="Developer Fullscreen" class="fullscreen-image">
-      <div class="close-button">✕</div>
+<div id="about-page" class="page" style="display: none;">
+    <div class="card">
+        <div class="about-header">
+            <div class="profile-thumbnail">
+                <img src="IMG-20250811-WA0001.jpg" alt="Developer Photo" class="thumbnail-img">
+                <div class="thumbnail-hover-effect">View</div>
+            </div>
+        </div>
     </div>
-  </label>
 </div>
 
 <style>
-  /* iPhone 15 Optimized Styles */
-  .thumbnail-wrapper {
-    position: fixed;
-    top: env(safe-area-inset-top, 20px);
-    right: env(safe-area-inset-right, 20px);
-    z-index: 1000;
-  }
-
-  .thumbnail-container {
-    display: block;
-    width: 70px;
-    height: 70px;
-    border-radius: 12px;
-    overflow: hidden;
-    border: 2px solid #fff;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    transition: transform 0.2s ease;
-    cursor: pointer;
-    position: relative;
-  }
-
-  .thumbnail-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-
-  .thumbnail-badge {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: rgba(0,0,0,0.6);
-    color: white;
-    font-size: 9px;
-    text-align: center;
-    padding: 3px 0;
-    backdrop-filter: blur(2px);
-  }
-
-  .fullscreen-toggle {
-    display: none;
-  }
-
-  .fullscreen-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0,0,0,0.95);
-    z-index: 2000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
-  }
-
-  .fullscreen-content {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .fullscreen-image {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-    animation: fadeIn 0.3s ease-out;
-  }
-
-  .close-button {
-    position: absolute;
-    top: calc(env(safe-area-inset-top, 20px) + 15px);
-    right: calc(env(safe-area-inset-right, 20px) + 15px);
-    color: white;
-    font-size: 30px;
-    width: 44px;
-    height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(0,0,0,0.5);
-    border-radius: 50%;
-  }
-
-  .fullscreen-toggle:checked ~ .fullscreen-overlay {
-    opacity: 1;
-    pointer-events: auto;
-  }
-
-  /* Touch feedback */
-  .thumbnail-container:active {
-    transform: scale(0.95);
-  }
-
-  .close-button:active {
-    background: rgba(255,255,255,0.2);
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.95); }
-    to { opacity: 1; transform: scale(1); }
-  }
-
-  /* iPhone 15 notch/padding adaptation */
-  @supports (padding: max(0px)) {
-    .thumbnail-wrapper {
-      top: max(20px, env(safe-area-inset-top));
-      right: max(20px, env(safe-area-inset-right));
+    .profile-thumbnail {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        width: 80px;
+        height: 80px;
+        border-radius: 8px;
+        overflow: hidden;
+        z-index: 100;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        border: 2px solid #ffffff;
     }
-  }
+    
+    .thumbnail-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.3s ease;
+    }
+    
+    .thumbnail-hover-effect {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0,0,0,0.7);
+        color: white;
+        text-align: center;
+        font-size: 10px;
+        padding: 4px 0;
+        transform: translateY(100%);
+        transition: transform 0.3s ease;
+        backdrop-filter: blur(2px);
+    }
+    
+    .profile-thumbnail:hover {
+        box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    }
+    
+    .profile-thumbnail:hover .thumbnail-img {
+        transform: scale(1.05);
+    }
+    
+    .profile-thumbnail:hover .thumbnail-hover-effect {
+        transform: translateY(0);
+    }
 </style>
                     <h2>Sohaib Mobile</h2>
                     <p class="developer-title">Loan Application Developer</p>
