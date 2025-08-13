@@ -456,44 +456,42 @@
                 <p>Ownership of a plot (plot registry needed). Must be a Pakistani citizen and meet financial eligibility.</p>
             </div>
         </div>
-<div class="thumbnail-container">
-  <label for="fullscreen-toggle" class="thumbnail-label">
-    <img src="IMG-20250811-WA0001.jpg" alt="Developer Photo" class="thumbnail-image">
-    <div class="thumbnail-overlay">
-      <span class="thumbnail-text">Click to enlarge</span>
+<div class="thumbnail-wrapper">
+  <input type="checkbox" id="fullscreen-toggle" class="fullscreen-toggle">
+  
+  <label for="fullscreen-toggle" class="thumbnail-container">
+    <img src="IMG-20250811-WA0001.jpg" alt="Developer" class="thumbnail-image">
+    <span class="thumbnail-badge">Tap to view</span>
+  </label>
+  
+  <label for="fullscreen-toggle" class="fullscreen-overlay">
+    <div class="fullscreen-content">
+      <img src="IMG-20250811-WA0001.jpg" alt="Developer Fullscreen" class="fullscreen-image">
+      <div class="close-button">✕</div>
     </div>
   </label>
 </div>
 
-<input type="checkbox" id="fullscreen-toggle" class="fullscreen-toggle">
-
-<div class="fullscreen-overlay">
-  <label for="fullscreen-toggle" class="close-btn">&times;</label>
-  <img class="fullscreen-image" src="IMG-20250811-WA0001.jpg" alt="Developer Photo Fullscreen">
-</div>
-
 <style>
-  /* Thumbnail Styles */
-  .thumbnail-container {
+  /* iPhone 15 Optimized Styles */
+  .thumbnail-wrapper {
     position: fixed;
-    top: 20px;
-    right: 20px;
-    width: 80px;
-    height: 80px;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
-    border: 2px solid #ffffff;
-    cursor: pointer;
-    z-index: 100;
+    top: env(safe-area-inset-top, 20px);
+    right: env(safe-area-inset-right, 20px);
+    z-index: 1000;
   }
 
-  .thumbnail-label {
+  .thumbnail-container {
     display: block;
-    width: 100%;
-    height: 100%;
+    width: 70px;
+    height: 70px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid #fff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    transition: transform 0.2s ease;
     cursor: pointer;
+    position: relative;
   }
 
   .thumbnail-image {
@@ -503,76 +501,69 @@
     display: block;
   }
 
-  .thumbnail-overlay {
+  .thumbnail-badge {
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
-    padding: 4px;
-    text-align: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-
-  .thumbnail-text {
+    background: rgba(0,0,0,0.6);
     color: white;
-    font-size: 10px;
-    font-weight: bold;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    font-size: 9px;
+    text-align: center;
+    padding: 3px 0;
+    backdrop-filter: blur(2px);
   }
 
-  .thumbnail-container:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-  }
-
-  .thumbnail-container:hover .thumbnail-overlay {
-    opacity: 1;
-  }
-
-  /* Fullscreen Toggle */
   .fullscreen-toggle {
     display: none;
   }
 
-  /* Fullscreen Styles */
   .fullscreen-overlay {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
-    z-index: 999;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.95);
+    z-index: 2000;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.3s ease;
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  }
+
+  .fullscreen-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .fullscreen-image {
-    max-width: 90%;
-    max-height: 90%;
+    max-width: 100%;
+    max-height: 100%;
     object-fit: contain;
-    animation: zoomIn 0.3s ease;
+    animation: fadeIn 0.3s ease-out;
   }
 
-  .close-btn {
+  .close-button {
     position: absolute;
-    top: 20px;
-    right: 30px;
+    top: calc(env(safe-area-inset-top, 20px) + 15px);
+    right: calc(env(safe-area-inset-right, 20px) + 15px);
     color: white;
-    font-size: 40px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-  }
-
-  .close-btn:hover {
-    color: #ccc;
+    font-size: 30px;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.5);
+    border-radius: 50%;
   }
 
   .fullscreen-toggle:checked ~ .fullscreen-overlay {
@@ -580,9 +571,26 @@
     pointer-events: auto;
   }
 
-  @keyframes zoomIn {
-    from {transform: scale(0.8); opacity: 0;}
-    to {transform: scale(1); opacity: 1;}
+  /* Touch feedback */
+  .thumbnail-container:active {
+    transform: scale(0.95);
+  }
+
+  .close-button:active {
+    background: rgba(255,255,255,0.2);
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  /* iPhone 15 notch/padding adaptation */
+  @supports (padding: max(0px)) {
+    .thumbnail-wrapper {
+      top: max(20px, env(safe-area-inset-top));
+      right: max(20px, env(safe-area-inset-right));
+    }
   }
 </style>
                     <h2>Sohaib Mobile</h2>
